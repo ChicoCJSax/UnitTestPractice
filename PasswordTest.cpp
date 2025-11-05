@@ -17,6 +17,30 @@ class PasswordTest : public ::testing::Test
 TEST(PasswordTest, single_letter_password)
 {
 	Password my_password;
-	int actual = my_password.count_leading_characters("Z");
-	ASSERT_EQ(1, actual);
+	ASSERT_EQ(1, my_password.count_leading_characters("Z"));
+}
+TEST(PasswordTest, empty_string_password)
+{
+	Password my_password;
+	ASSERT_EQ(0, my_password.count_leading_characters(""));
+}
+TEST(PasswordTest, two_letters_check)
+{
+	Password my_password;
+	ASSERT_EQ(2, my_password.count_leading_characters("aab"));
+}
+TEST(PasswordTest, capital_and_lowercase_mix)
+{
+	Password my_password;
+	ASSERT_EQ(3, my_password.count_leading_characters("TTTtest"));
+}
+TEST(PasswordTest, three_spaces_password)
+{
+	Password my_password;
+	ASSERT_EQ(3, my_password.count_leading_characters("   "));
+}
+TEST(PasswordTest, null_ascii_character)
+{
+	Password my_password;
+	ASSERT_EQ(3, my_password.count_leading_characters("\0\0\0"));
 }
